@@ -13,9 +13,14 @@
 	},
 	"dependencies": {
 		"@opennextjs/cloudflare": "^1.9.1",
+		"@react-three/drei": "^10.7.6",
+		"@react-three/fiber": "^9.3.0",
+		"framer-motion": "^12.23.22",
 		"next": "15.4.6",
 		"react": "19.1.0",
-		"react-dom": "19.1.0"
+		"react-dom": "19.1.0",
+		"three": "^0.180.0",
+		"zustand": "^5.0.8"
 	},
 	"devDependencies": {
 		"@tailwindcss/postcss": "^4",
