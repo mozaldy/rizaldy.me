@@ -40,7 +40,7 @@ export default function ProfileSection() {
 
             // Ball expansion and content come in together
             tl
-                .to(ballRef.current, { scale: 100, duration: 10, ease: "expo.in", }, 3)
+                .to(ballRef.current, { scale: 100, duration: 10, ease: "expo.in", }, 5)
                 .to(titleARef.current, { x: 0, duration: 5, ease: 'circ.out' }, 4)
                 .to(titleBRef.current, { x: 0, duration: 6, ease: 'circ.out' }, 4.5)
                 .to(profileCardRef.current, { autoAlpha: 1, y: 0, duration: 1, ease: 'circ.out' }, 0)
