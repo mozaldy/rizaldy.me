@@ -11,6 +11,7 @@ export default function SmoothFollower() {
     const [renderPos, setRenderPos] = useState({ dot: { x: 0, y: 0 }, border: { x: 0, y: 0 } })
     const [isHovering, setIsHovering] = useState(false)
     const [isVisible, setIsVisible] = useState(false)
+    const [isMounted, setIsMounted] = useState(false)
 
     const DOT_SMOOTHNESS = 0.2
     const BORDER_DOT_SMOOTHNESS = 0.1
@@ -69,7 +70,12 @@ export default function SmoothFollower() {
         }
     }, [])
 
-    if (typeof window === "undefined") return null
+    // Handle SSR - only render after mounting on client
+    useEffect(() => {
+        setIsMounted(true)
+    }, [])
+
+    if (!isMounted) return null
 
     return (
         <>

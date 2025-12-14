@@ -1,23 +1,28 @@
 'use client';
 
 import { forwardRef } from 'react';
+import VerticalBarsNoise from './VerticalBarsNoise';
 
 interface HeroSectionProps {
     textTopRef: React.RefObject<HTMLHeadingElement | null>;
     textBottomRef: React.RefObject<HTMLHeadingElement | null>;
-    ballRef: React.RefObject<HTMLDivElement | null>;
 }
 
 const HeroSection = forwardRef<HTMLElement, HeroSectionProps>(
-    ({ textTopRef, textBottomRef, ballRef }, ref) => {
+    ({ textTopRef, textBottomRef }, ref) => {
         return (
             <section
                 ref={ref}
                 className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden"
             >
-                {/* Typography - TOP LAYER (z-30) for Mix Blend Mode */}
-                {/* mix-blend-difference on WHITE text against WHITE ball = BLACK Text */}
-                <div className="z-30 flex flex-col items-center justify-center gap-2 px-4 text-center mix-blend-difference pointer-events-none">
+                {/* Animated Vertical Bars Background */}
+                <VerticalBarsNoise
+                    backgroundColor="#171717ff"
+                    lineColor="#1e388eff"
+                    barColor="#0f1228ff"
+                />
+                {/* Typography */}
+                <div className="z-30 flex flex-col items-center justify-center gap-2 px-4 text-center pointer-events-none">
                     <h2
                         ref={textTopRef}
                         className="text-xl font-bold font-clash uppercase tracking-widest text-white sm:text-2xl md:text-3xl lg:text-4xl"
@@ -32,14 +37,8 @@ const HeroSection = forwardRef<HTMLElement, HeroSectionProps>(
                     </h1>
                 </div>
 
-                {/* White Ball Trigger - MIDDLE LAYER (z-20) */}
-                <div
-                    ref={ballRef}
-                    className="absolute bottom-0 left-1/2 h-5 w-5 -translate-x-1/2 translate-y-1/2 rounded-full bg-white z-20 pointer-events-none"
-                ></div>
-
                 {/* ANIMATED ARROW - Scroll Indicator */}
-                <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-30 mix-blend-difference pointer-events-none animate-bounce">
+                <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-30 pointer-events-none animate-bounce">
                     <svg
                         className="w-6 h-6 text-white"
                         fill="none"
@@ -62,3 +61,4 @@ const HeroSection = forwardRef<HTMLElement, HeroSectionProps>(
 HeroSection.displayName = 'HeroSection';
 
 export default HeroSection;
+
