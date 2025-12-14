@@ -10,6 +10,7 @@ import HeroSection from '@/components/HeroSection';
 import ProfileSection from '@/components/ProfileSection';
 import ScrollLinkedTitle from '@/components/ScrollLinkedTitle';
 import ProjectsSection from '@/components/ProjectsSection';
+import SmoothFollower from '@/components/SmoothFollower';
 
 // Register GSAP ScrollTrigger
 if (typeof window !== 'undefined') {

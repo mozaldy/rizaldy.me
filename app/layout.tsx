@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import SmoothFollower from "@/components/SmoothFollower";
+
 
 export const metadata: Metadata = {
 	title: "Rizaldy - Engineer",
@@ -13,7 +15,10 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className="antialiased">{children}</body>
+			<body className="antialiased">
+				{children}
+				<SmoothFollower />
+			</body>
 		</html>
 	);
 }
