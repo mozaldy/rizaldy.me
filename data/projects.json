@@ -1,0 +1,214 @@
+[
+    {
+        "Column_1": {
+            "Title": "Adibasa",
+            "Slug": "adibasa",
+            "Year": "2025",
+            "Role": "Product Owner\nDeveloper",
+            "Link": [
+                {
+                    "logo": "play",
+                    "text": "Google Play",
+                    "url": "https://play.google.com/store/apps/details?id=com.adibasa.app&pcampaignid=web_share"
+                },
+                {
+                    "logo": "web",
+                    "text": "Website",
+                    "url": "https://adibasa.app"
+                }
+            ],
+            "Impact": [
+                "Made learning the Javanese language easier and therefore foster better communication between Javanese people and 'nomads' living in Java"
+            ],
+            "What_I_learned": [
+                "Organizing people into working teams",
+                "Converting user pains and gains into backlogs",
+                "Working under pressure",
+                "Collaboration and version control with Git and GitHub",
+                "Deployment of working apps on Google Play Store"
+            ]
+        },
+        "Column_2": {
+            "Project_Description": "Adibasa is a mobile app that helps preserve and teach Indonesian local languages through gamified, interactive learning. The project started with identifying limited access to regional language education and low interest among younger generations. I conducted research by analysing platforms like Duolingo and gathering insights from students and educators, revealing a strong need for culturally relevant tools. To address this, Adibasa offers mini dictionaries and interactive gamification with quizzes. These elements are designed to make learning effective and engaging. The app targets students, language enthusiasts, and travellers. Adibasa reflects a clear understanding of the problem. user-centric research, and thoughtful feature design to solve a real cultural challenge with technology.",
+            "Image": "https://cdn.prod.website-files.com/678f62698d1043f9f15c0cec/6870b6eba2c6d2e0c2068fa6_OH_SAMFORD%C2%A9ANDYMACPHERSON-1%20(1).avif"
+        },
+        "Colors": {
+            "Foreground": "#6e572b",
+            "Background": "#f5debe",
+            "Accent": "#a5a75e"
+        },
+        "Assets": {
+            "landing": "/projects/adibasa_landing.jpeg"
+        }
+    },
+    {
+        "Column_1": {
+            "Title": "Ngumpulin",
+            "Slug": "ngumpulin",
+            "Year": "2025",
+            "Role": "Developer",
+            "Link": [
+                {
+                    "logo": "web",
+                    "text": "Website",
+                    "url": "#"
+                },
+                {
+                    "logo": "drive",
+                    "text": "Proposal",
+                    "url": "https://drive.google.com/file/d/1D5twtizTN6FrtjM3Iv7Gwdnscm7jWe66/view?usp=sharing"
+                }
+            ],
+            "Impact": [
+                "For lecturers, it reduces administrative workload, enhances grading accuracy, and allows greater focus on academic activities.",
+                "For institutions, it increases academic efficiency and supports digital transformation in education."
+            ],
+            "What_I_learned": [
+                "Studied key concepts like Cosine Similarity, LLMs, and Agentic AI",
+                "Designed system architecture and task automation workflows",
+                "Built the app using modern tools like Next.js, FastAPI, and PostgreSQL"
+            ]
+        },
+        "Column_2": {
+            "Project_Description": "Ngumpulin is a SaaS (Software as a Service) application designed to manage and grade student assignments. This product integrates AI technology to automate assessment and plagiarism detection, while also providing an efficient platform for task submission. Its core features include digital assignment collection and accurate plagiarism detection.",
+            "Image": "https://cdn.prod.website-files.com/678f62698d1043f9f15c0cec/68b8240475470413456f4c41_OH_SAMFORD%C2%A9ANDYMACPHERSON-47.avif"
+        },
+        "Colors": {
+            "Foreground": "#0b0f1a",
+            "Background": "#f9fdff",
+            "Accent": "#2e67dd"
+        },
+        "Assets": {
+            "landing": "/projects/ngumpulin_landing.jpeg"
+        }
+    },
+    {
+        "Column_1": {
+            "Title": "AHASS Admin",
+            "Slug": "ahass-admin",
+            "Year": "2024",
+            "Role": "Product Owner\nDeveloper",
+            "Link": [
+                {
+                    "logo": "github",
+                    "text": "Source Code",
+                    "url": "https://github.com/mozaldy/ahass-admin/"
+                },
+                {
+                    "logo": "web",
+                    "text": "Production",
+                    "url": "https://ahass-admin.vercel.app/"
+                }
+            ],
+            "Impact": [
+                "This project streamlines the workshop's entire workflow by integrating service management, sales, and inventory into one digital system, ultimately improving operational efficiency, data accuracy.",
+                "and providing clear performance insights through automated reporting and auditing."
+            ],
+            "What_I_learned": [
+                "Using cutting-edge technologies such as Next.js and Prisma ORM. Following industry standard for authentication in Next.js",
+                "Implementing advanced form and stage management as well as robust and secure error handlings.",
+                "Generating performance reports for data-based business decision-making by converting records into PDFs"
+            ]
+        },
+        "Column_2": {
+            "Project_Description": "Rahardjo Motor Ahass Admin is a comprehensive administration system for a vehicle repair workshop, especially a Honda-authorized service station (AHASS). It manages all aspects of the business. from customer and vehicle registration to service orders, spare part inventory, sales, and financial reporting.",
+            "Image": "https://cdn.prod.website-files.com/678f62698d1043f9f15c0cec/67ec89266a30d21bfc54e72a_OH_POOLHOUSE%C2%A9ANDYMACPHERSON-7%20(1).avif"
+        },
+        "Colors": {
+            "Foreground": "#131416",
+            "Background": "#ffffff",
+            "Accent": "#da2527"
+        },
+        "Assets": {
+            "landing": "/projects/ahass_admin_landing.jpeg"
+        }
+    },
+    {
+        "Column_1": {
+            "Title": "ASMAT",
+            "Slug": "asmat",
+            "Year": "2021",
+            "Role": "Front-end Web Developer",
+            "Link": [
+                {
+                    "logo": "instagram",
+                    "text": "Instagram",
+                    "url": "https://instagram.com/asmat.papua/"
+                },
+                {
+                    "logo": "youtube",
+                    "text": "YouTube",
+                    "url": "https://www.youtube.com/watch?v=c7V0tIzw7t0"
+                },
+                {
+                    "logo": "drive",
+                    "text": "UI/UX Design",
+                    "url": "https://drive.google.com/drive/folders/1kDFyX0Hr_a35kyukCObiar13cfMACP6h"
+                }
+            ],
+            "Impact": [
+                "This project directly improves the economic well-being of local farmers and producers in Papua by opening new market opportunities.",
+                "By promoting sustainably sourced products, ASMAT plays an active role in the conservation and protection of Indonesia's forests."
+            ],
+            "What_I_learned": [
+                "Working in a cross-functional team",
+                "Basics of web programming with HTML, CSS, and JavaScript",
+                "Shipping front-end components to the back-end engineer in a zip file and why GitHub is a better alternative"
+            ]
+        },
+        "Column_2": {
+            "Project_Description": "Advancing Sustainable Market (ASMAT) is an e-commerce platform dedicated to marketing agricultural and craft products from the indigenous communities of Papua. The project aims to provide fair and sustainable market access, supporting local community livelihoods without harming the jungle ecosystem.",
+            "Image": "https://cdn.prod.website-files.com/678f62698d1043f9f15c0cec/6812e7c68ea5cdd4757464f3_Web%202.avif"
+        },
+        "Colors": {
+            "Foreground": "#f7f7e8",
+            "Background": "#df7861",
+            "Accent": "#ecb390"
+        },
+        "Assets": {
+            "landing": "/projects/asmat_landing.jpeg"
+        }
+    },
+    {
+        "Column_1": {
+            "Title": "VISCA",
+            "Slug": "visca",
+            "Year": "2025",
+            "Role": "Product Owner\nLead Developer",
+            "Link": [
+                {
+                    "logo": "github",
+                    "text": "GitHub",
+                    "url": "https://github.com/mozaldy/visca"
+                },
+                {
+                    "logo": "figma",
+                    "text": "Figma",
+                    "url": "https://www.figma.com/design/6FVEExoL5IWuJZVIqbpZ95/K10?node-id=0-1&t=67yOWyETIYfu5IRr-1"
+                }
+            ],
+            "Impact": [
+                "The primary impact is the deployment of an advanced AI/ML solution to solve a traditional problem, an alternative to manual attendance tracking.",
+                "The use of the Facenet model ensures high accuracy in verification.",
+                "By performing all AI processing on the client's device, the application guarantees user privacy, low-latency performance, and makes sophisticated facial recognition technology practical for everyday use in schools and businesses"
+            ],
+            "What_I_learned": [
+                "Built a complete app with Flutter UI Riverpod for state management, and Firebase for backend auth and database services.",
+                "Implemented the Facenet deep learning model with TensorFlow Lite to perform real-time, on-device facial recognition.",
+                "Specialized Database for AI using ObjectBox"
+            ]
+        },
+        "Column_2": {
+            "Project_Description": "Visca is an AI-powered attendance application built with Flutter that leverages a state-of-the-art deep learning model, Facenet, to deliver highly accurate, on-device face recognition. By running the model locally via TensorFlow Lite, the system generates unique facial embeddings for registered members, enabling secure and instantaneous identity verification for automated check-ins.",
+            "Image": "https://cdn.prod.website-files.com/678f62698d1043f9f15c0cec/67cb922bdef0e1b3b391a682_THUMBNAIL.avif"
+        },
+        "Colors": {
+            "Foreground": "#e0e9ed",
+            "Background": "#4f7779",
+            "Accent": "#031320"
+        },
+        "Assets": {
+            "landing": "/projects/visca_landing.jpeg"
+        }
+    }
+]
