@@ -18,13 +18,13 @@ export default function ProfileSection() {
     const titleBRef = useRef<HTMLHeadingElement>(null);
     const profileCardRef = useRef<HTMLDivElement>(null);
     const profileContentRef = useRef<HTMLDivElement>(null);
+    const imageWrapperRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const ctx = gsap.context(() => {
             gsap.set(ballRef.current, { scale: 0 });
             gsap.set(titleARef.current, { x: '-100vw' });
             gsap.set(titleBRef.current, { x: '100vw' });
-            gsap.set(profileCardRef.current, { autoAlpha: 0, y: 200 });
             gsap.set(profileContentRef.current?.children || [], { autoAlpha: 0, y: 50 });
 
             // UNIFIED ANIMATION: Ball expansion + content animations happen simultaneously
@@ -55,6 +55,43 @@ export default function ProfileSection() {
                 pinSpacing: false,
                 anticipatePin: 1,
             });
+
+            // IMAGE MORPH ANIMATION: Rectangle (2:3) to Circle (1:1) as Projects slides up
+            // This happens during the pinned phase
+            const imageWrapper = imageWrapperRef.current;
+            if (imageWrapper) {
+                // Get the initial dimensions from CSS (we'll use the largest breakpoint as reference)
+                // Initial: 2:3 aspect ratio (w-64 h-96 → w-80 h-120 → w-[400px] h-[600px])
+                // Final: 1:1 circle
+                const morphTl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: containerRef.current,
+                        start: 'top top',      // Start when ProfileSection is pinned
+                        end: '+=25%',          // End when Projects fully covers
+                        scrub: 0.5,
+                    },
+                });
+
+                // Animate from rectangle to circle
+                morphTl.to(imageWrapper, {
+                    // Morph to square aspect ratio
+                    width: () => {
+                        // Get current width and use it as the target for both dimensions
+                        const currentWidth = imageWrapper.offsetWidth;
+                        return currentWidth;
+                    },
+                    height: () => {
+                        // Square = width equals height
+                        const currentWidth = imageWrapper.offsetWidth;
+                        return currentWidth;
+                    },
+                    borderRadius: '50%',
+                    marginBottom: 300,
+                    rotate: 0,
+                    duration: 1,
+                    ease: 'power2.inOut',
+                });
+            }
         }, containerRef);
 
         return () => ctx.revert();
@@ -88,20 +125,26 @@ export default function ProfileSection() {
 
                 {/* Image Layer - NO blend mode */}
                 <div className="container mx-auto flex h-full w-full max-w-6xl flex-col justify-center gap-8 px-6 pt-32 lg:px-12 pointer-events-auto z-30">
-                    <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-12 w-full">
+                    <div className="grid grid-cols-1 md:grid-cols-2 items-start gap-12 w-full">
                         {/* Left Col: Profile Image Card */}
-                        <div className="flex items-center justify-center h-full">
+                        <div ref={profileCardRef} className="flex items-start">
                             <div
-                                ref={profileCardRef}
-                                className="w-64 h-96 md:w-80 md:h-[480px] lg:w-[400px] lg:h-[600px] rotate-3 overflow-hidden rounded-3xl shadow-2xl relative"
+                                ref={imageWrapperRef}
+                                className="w-64 h-96 md:w-80 md:h-[480px] lg:w-[400px] lg:h-[600px] rotate-3 overflow-hidden shadow-2xl relative"
+                                style={{ borderRadius: '1.5rem' }}
                             >
                                 <Image
                                     src="/rizaldy.jpg"
                                     alt="Mohammad Rizaldy Ramadhan"
                                     fill
-                                    className="object-cover"
+                                    className="object-cover object-top"
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     priority
+                                />
+                                {/* Border overlay with mix-blend */}
+                                <div
+                                    className="absolute inset-0 border-4 border-foreground mix-blend-difference pointer-events-none"
+                                    style={{ borderRadius: 'inherit' }}
                                 />
                             </div>
                         </div>
