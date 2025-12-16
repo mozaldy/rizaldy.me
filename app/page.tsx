@@ -44,7 +44,7 @@ export default function Home() {
     }, []);
 
     return (
-        <div className="relative w-full bg-[#111111] overflow-x-hidden">
+        <div className="relative w-full overflow-x-hidden">
             {/* Hero Section - Scrolls normally */}
             <HeroSection
                 ref={heroRef}

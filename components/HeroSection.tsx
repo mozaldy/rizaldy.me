@@ -2,7 +2,7 @@
 
 import { forwardRef, useEffect } from 'react';
 import gsap from 'gsap';
-import VerticalBarsNoise from './VerticalBarsNoise';
+import CosmicBackground from './CosmicBackground';
 
 interface HeroSectionProps {
     textTopRef: React.RefObject<HTMLHeadingElement | null>;
@@ -19,7 +19,7 @@ const HeroSection = forwardRef<HTMLElement, HeroSectionProps>(
                     duration: 1,
                     stagger: 0.1,
                     ease: 'power3.out',
-                    delay: 1, // Optional delay to let the page load a bit
+                    delay: 1,
                 });
             }, textTopRef);
 
@@ -31,17 +31,13 @@ const HeroSection = forwardRef<HTMLElement, HeroSectionProps>(
                 ref={ref}
                 className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden"
             >
-                {/* Animated Vertical Bars Background */}
-                <VerticalBarsNoise
-                    backgroundColor="#171717ff"
-                    lineColor="#0e1a3fff"
-                    barColor="#161828ff"
-                />
+                {/* Cosmic Background with Sparkles */}
+                <CosmicBackground />
                 {/* Typography */}
                 <div className="z-30 flex flex-col items-center justify-center gap-2 px-4 text-center pointer-events-none">
                     <h2
                         ref={textTopRef}
-                        className="text-xl font-bold font-clash uppercase tracking-widest text-white sm:text-2xl md:text-3xl lg:text-4xl overflow-hidden"
+                        className="text-xl font-bold font-clash uppercase tracking-widest text-foreground sm:text-2xl md:text-3xl lg:text-4xl overflow-hidden"
                     >
                         {"Software Engineer".split('').map((char, index) => (
                             <span key={index} className="hero-char inline-block">
@@ -51,7 +47,7 @@ const HeroSection = forwardRef<HTMLElement, HeroSectionProps>(
                     </h2>
                     <h1
                         ref={textBottomRef}
-                        className="mt-2 text-2xl font-bold font-satoshi uppercase tracking-wider text-white sm:text-4xl md:text-5xl lg:text-6xl text-nowrap"
+                        className="mt-2 text-2xl font-bold font-satoshi uppercase tracking-wider text-foreground sm:text-4xl md:text-5xl lg:text-6xl text-nowrap"
                     >
                         Mohammad Rizaldy Ramadhan
                     </h1>
@@ -60,7 +56,7 @@ const HeroSection = forwardRef<HTMLElement, HeroSectionProps>(
                 {/* ANIMATED ARROW - Scroll Indicator */}
                 <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-30 pointer-events-none animate-bounce">
                     <svg
-                        className="w-6 h-6 text-white"
+                        className="w-6 h-6 text-foreground"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"

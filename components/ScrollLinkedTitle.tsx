@@ -16,13 +16,13 @@ const ScrollLinkedTitle = forwardRef<HTMLDivElement, ScrollLinkedTitleProps>(
             >
                 <h3
                     ref={titleARef}
-                    className="font-clash text-3xl font-bold uppercase tracking-wider text-white sm:text-5xl md:text-6xl lg:text-7xl text-left w-full max-w-2xl px-4"
+                    className="font-clash text-3xl font-bold uppercase tracking-wider text-foreground sm:text-5xl md:text-6xl lg:text-7xl text-left w-full max-w-2xl px-4"
                 >
                     Software
                 </h3>
                 <h3
                     ref={titleBRef}
-                    className="font-clash text-3xl font-bold uppercase tracking-wider text-white sm:text-5xl md:text-6xl lg:text-7xl text-right w-full max-w-2xl px-4"
+                    className="font-clash text-3xl font-bold uppercase tracking-wider text-foreground sm:text-5xl md:text-6xl lg:text-7xl text-right w-full max-w-2xl px-4"
                 >
                     Engineer
                 </h3>

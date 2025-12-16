@@ -43,8 +43,8 @@
 @import "tailwindcss";
 
 :root {
-	--background: #ffffff;
-	--foreground: #171717;
+	--background: #0b1215;
+	--foreground: #eff2f4;
 }
 
 @theme inline {
@@ -54,12 +54,6 @@
 	--font-satoshi: 'Satoshi', Arial, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-	:root {
-		--background: #0a0a0a;
-		--foreground: #ededed;
-	}
-}
 
 body {
 	background: var(--background);
