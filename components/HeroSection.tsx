@@ -37,7 +37,7 @@ const HeroSection = forwardRef<HTMLElement, HeroSectionProps>(
                 <div className="z-30 flex flex-col items-center justify-center gap-2 px-4 text-center pointer-events-none">
                     <h2
                         ref={textTopRef}
-                        className="text-xl font-bold font-clash uppercase tracking-widest text-foreground sm:text-2xl md:text-3xl lg:text-4xl overflow-hidden"
+                        className="font-bold font-clash uppercase tracking-widest text-foreground text-2xl lg:text-4xl overflow-hidden"
                     >
                         {"Software Engineer".split('').map((char, index) => (
                             <span key={index} className="hero-char inline-block">
@@ -49,7 +49,7 @@ const HeroSection = forwardRef<HTMLElement, HeroSectionProps>(
                         ref={textBottomRef}
                         className="mt-2 text-2xl font-bold font-satoshi uppercase tracking-wider text-foreground sm:text-4xl md:text-5xl lg:text-6xl text-nowrap"
                     >
-                        Mohammad Rizaldy Ramadhan
+                        Mohammad Rizaldy
                     </h1>
                 </div>
 

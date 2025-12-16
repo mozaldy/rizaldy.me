@@ -28,17 +28,15 @@ export default function ProfileSection() {
             gsap.set(profileContentRef.current?.children || [], { autoAlpha: 0, y: 50 });
 
             // UNIFIED ANIMATION: Ball expansion + content animations happen simultaneously
-            // Everything starts when section enters viewport
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: containerRef.current,
-                    start: 'top bottom',   // When section first enters viewport
-                    end: 'top top',        // Animation completes when section reaches top
+                    start: 'top bottom',
+                    end: 'top top',
                     scrub: 1,
                 },
             });
 
-            // Ball expansion and content come in together
             tl
                 .to(ballRef.current, { scale: 100, duration: 10, ease: "expo.in", }, 5)
                 .to(titleARef.current, { x: 0, duration: 5, ease: 'circ.out' }, 4)
@@ -46,7 +44,7 @@ export default function ProfileSection() {
                 .to(profileCardRef.current, { autoAlpha: 1, y: 0, duration: 1, ease: 'circ.out' }, 0)
                 .to(profileContentRef.current?.children || [], { autoAlpha: 1, y: 0, duration: 6, stagger: 1, ease: 'power2.out' }, 5);
 
-            // Pinned state (holds section in place while Projects slides up to cover)
+            // Pinned state
             ScrollTrigger.create({
                 trigger: containerRef.current,
                 start: 'top top',
@@ -56,41 +54,42 @@ export default function ProfileSection() {
                 anticipatePin: 1,
             });
 
-            // IMAGE MORPH ANIMATION: Rectangle (2:3) to Circle (1:1) as Projects slides up
-            // This happens during the pinned phase
+            // IMAGE MORPH ANIMATION
             const imageWrapper = imageWrapperRef.current;
             if (imageWrapper) {
-                // Get the initial dimensions from CSS (we'll use the largest breakpoint as reference)
-                // Initial: 2:3 aspect ratio (w-64 h-96 → w-80 h-120 → w-[400px] h-[600px])
-                // Final: 1:1 circle
+                // Store initial dimensions from CSS
+                const getInitialWidth = () => imageWrapper.offsetWidth;
+                const getInitialHeight = () => imageWrapper.offsetHeight;
+
                 const morphTl = gsap.timeline({
                     scrollTrigger: {
                         trigger: containerRef.current,
-                        start: 'top top',      // Start when ProfileSection is pinned
-                        end: '+=25%',          // End when Projects fully covers
+                        start: 'top top',
+                        end: '+=25%',
                         scrub: 0.5,
+                        invalidateOnRefresh: true,
                     },
                 });
 
-                // Animate from rectangle to circle
-                morphTl.to(imageWrapper, {
-                    // Morph to square aspect ratio
-                    width: () => {
-                        // Get current width and use it as the target for both dimensions
-                        const currentWidth = imageWrapper.offsetWidth;
-                        return currentWidth;
+                // Animate from current CSS dimensions to square (circle)
+                morphTl.fromTo(imageWrapper,
+                    {
+                        width: getInitialWidth,
+                        height: getInitialHeight,
+                        borderRadius: '1.5rem',
+                        marginBottom: 0,
+                        rotate: () => window.innerWidth >= 768 ? 3 : 0,
                     },
-                    height: () => {
-                        // Square = width equals height
-                        const currentWidth = imageWrapper.offsetWidth;
-                        return currentWidth;
-                    },
-                    borderRadius: '50%',
-                    marginBottom: 300,
-                    rotate: 0,
-                    duration: 1,
-                    ease: 'power2.inOut',
-                });
+                    {
+                        width: getInitialWidth,
+                        height: getInitialWidth, // Square = width for both
+                        borderRadius: '50%',
+                        marginBottom: 300,
+                        rotate: 0,
+                        duration: 1,
+                        ease: 'power2.inOut',
+                    }
+                );
             }
         }, containerRef);
 
@@ -98,7 +97,7 @@ export default function ProfileSection() {
     }, []);
 
     return (
-        <div ref={containerRef} className="relative w-full h-screen z-10">
+        <div ref={containerRef} className="relative w-full min-h-screen z-10">
             {/* Scroll-Linked Title */}
             <div className="absolute inset-x-0 top-16 z-50 flex flex-col items-center justify-center mix-blend-difference pointer-events-none overflow-hidden">
                 <h3
@@ -115,22 +114,22 @@ export default function ProfileSection() {
                 </h3>
             </div>
 
-            {/* Profile Content */}
-            <section className="absolute inset-0 z-10 flex h-screen w-full items-center justify-center pointer-events-none">
-                {/* White Ball */}
+            {/* Profile Content Section */}
+            <section className="absolute inset-0 flex min-h-screen w-full items-center justify-center pointer-events-none">
+                {/* White Ball - z-20 so it's between image (z-30) and text (z-40) for blend effect */}
                 <div
                     ref={ballRef}
                     className="absolute top-10 left-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white z-20 pointer-events-none"
                 ></div>
 
-                {/* Image Layer - NO blend mode */}
-                <div className="container mx-auto flex h-full w-full max-w-6xl flex-col justify-center gap-8 px-6 pt-32 lg:px-12 pointer-events-auto z-30">
-                    <div className="grid grid-cols-1 md:grid-cols-2 items-start gap-12 w-full">
-                        {/* Left Col: Profile Image Card */}
-                        <div ref={profileCardRef} className="flex items-start">
+                {/* Image Layer - z-30, above the ball */}
+                <div className="absolute inset-0 container mx-auto flex h-full w-full max-w-6xl flex-col justify-start md:justify-center px-6 pt-40 md:pt-32 lg:px-12 pointer-events-auto z-30">
+                    <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8 md:gap-12 w-full">
+                        {/* Image Card */}
+                        <div ref={profileCardRef} className="flex items-center justify-center md:items-start md:justify-start">
                             <div
                                 ref={imageWrapperRef}
-                                className="w-64 h-96 md:w-80 md:h-[480px] lg:w-[400px] lg:h-[600px] rotate-3 overflow-hidden shadow-2xl relative"
+                                className="w-40 h-60 sm:w-48 sm:h-72 md:w-80 md:h-[480px] lg:w-[400px] lg:h-[600px] rotate-0 md:rotate-3 overflow-hidden shadow-2xl relative"
                                 style={{ borderRadius: '1.5rem' }}
                             >
                                 <Image
@@ -141,47 +140,47 @@ export default function ProfileSection() {
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     priority
                                 />
-                                {/* Border overlay with mix-blend */}
                                 <div
                                     className="absolute inset-0 border-4 border-foreground mix-blend-difference pointer-events-none"
                                     style={{ borderRadius: 'inherit' }}
                                 />
                             </div>
                         </div>
-                        {/* Empty right column to maintain grid layout */}
-                        <div></div>
+                        {/* Empty column on desktop to maintain layout */}
+                        <div className="hidden md:block"></div>
                     </div>
                 </div>
 
-                {/* Text Layer - WITH blend mode */}
-                <div className="absolute inset-0 container mx-auto flex h-full w-full max-w-6xl flex-col justify-center gap-8 px-6 pt-32 lg:px-12 pointer-events-auto z-40 mix-blend-difference">
-                    <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-12 w-full">
-                        {/* Empty left column to maintain grid layout */}
-                        <div></div>
+                {/* Text Layer - z-40, with mix-blend-difference to invert against the white ball */}
+                <div className="absolute inset-0 container mx-auto flex h-full w-full max-w-6xl flex-col justify-start md:justify-center px-6 pt-40 md:pt-32 lg:px-12 pointer-events-auto z-40 mix-blend-difference">
+                    <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8 md:gap-12 w-full">
+                        {/* Empty column on mobile to push text below image in visual flow */}
+                        {/* On desktop, empty column aligns text to right side */}
+                        <div className="hidden md:block"></div>
 
-                        {/* Right Col: Bio & Details */}
-                        <div ref={profileContentRef} className="flex flex-col space-y-8 text-left justify-center text-foreground">
-                            <div className="space-y-4 text-lg">
-                                <div className="flex flex-col sm:flex-row sm:gap-4">
-                                    <span className="font-clash font-bold min-w-32">Name:</span>
+                        {/* Bio & Details */}
+                        <div ref={profileContentRef} className="flex flex-col space-y-6 md:space-y-8 text-center md:text-left justify-center text-foreground mt-80 md:mt-0">
+                            <div className="space-y-3 md:space-y-4 text-base md:text-lg">
+                                <div className="flex flex-col md:flex-row md:gap-4">
+                                    <span className="font-clash font-bold md:min-w-32">Name:</span>
                                     <span>{profileData.name}</span>
                                 </div>
-                                <div className="flex flex-col sm:flex-row sm:gap-4">
-                                    <span className="font-clash font-bold min-w-32">Location:</span>
+                                <div className="flex flex-col md:flex-row md:gap-4">
+                                    <span className="font-clash font-bold md:min-w-32">Location:</span>
                                     <span>{profileData.location}</span>
                                 </div>
-                                <div className="flex flex-col sm:flex-row sm:gap-4">
-                                    <span className="font-clash font-bold min-w-32">Experience:</span>
+                                <div className="flex flex-col md:flex-row md:gap-4">
+                                    <span className="font-clash font-bold md:min-w-32">Experience:</span>
                                     <span>{profileData.experience}</span>
                                 </div>
-                                <div className="flex flex-col sm:flex-row sm:gap-4">
-                                    <span className="font-clash font-bold min-w-32">Core Skills:</span>
+                                <div className="flex flex-col md:flex-row md:gap-4">
+                                    <span className="font-clash font-bold md:min-w-32">Core Skills:</span>
                                     <span>{profileData.coreSkills}</span>
                                 </div>
                             </div>
 
                             {/* Socials & CTA */}
-                            <div className="pt-4 flex flex-col gap-4">
+                            <div className="pt-4 flex flex-col items-center md:items-start gap-4">
                                 <div className="flex space-x-4">
                                     <a href={profileData.socials.linkedin} className="text-foreground transition-transform hover:scale-110" aria-label="LinkedIn">
                                         <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" /></svg>
@@ -197,7 +196,7 @@ export default function ProfileSection() {
                                 <a
                                     href={profileData.cvUrl}
                                     download
-                                    className="w-fit rounded-full bg-black border px-8 py-3 text-sm font-bold uppercase tracking-widest text-foreground transition-colors hover:bg-gray-800"
+                                    className="rounded-full bg-black border border-black px-8 py-3 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:bg-gray-800"
                                 >
                                     Download CV
                                 </a>

@@ -3,7 +3,6 @@
 import { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Lenis from 'lenis';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
@@ -47,17 +46,6 @@ const ProjectsSection = () => {
 
         if (!section || !container || !progressAmount) return;
 
-        // --- Lenis Setup ---
-        const lenis = new Lenis();
-
-        lenis.on('scroll', ScrollTrigger.update);
-
-        gsap.ticker.add((time) => {
-            lenis.raf(time * 1000);
-        });
-
-        gsap.ticker.lagSmoothing(0);
-
         // --- Horizontal Scroll Setup ---
         const ctx = gsap.context(() => {
             // Force refresh to ensure correct calculations
@@ -94,9 +82,6 @@ const ProjectsSection = () => {
 
         return () => {
             ctx.revert();
-            // Cleanup Lenis
-            lenis.destroy();
-            gsap.ticker.remove(lenis.raf);
         };
     }, []);
 
@@ -118,9 +103,9 @@ const ProjectsSection = () => {
             >
                 {/* Intro Card */}
                 <div
-                    className="w-2xl h-screen shrink-0 p-8 box-border bg-background text-foreground flex flex-col justify-center items-center md:items-start"
+                    className="w-screen md:w-2xl h-screen shrink-0 p-8 box-border bg-background text-foreground flex flex-col justify-center items-center md:items-start"
                 >
-                    <div className="max-w-4xl px-4 md:px-20">
+                    <div className="px-4 md:px-20">
                         <h3 className="text-5xl md:text-7xl font-clash font-bold uppercase leading-tight mb-8">
                             Selected Projects
                         </h3>
